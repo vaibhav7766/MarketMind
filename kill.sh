@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  kill.sh — Forcefully stop all running Stonks services and free up ports
+#  kill.sh — Forcefully stop all running MarketMind services and free up ports
 # ─────────────────────────────────────────────────────────────────────────────
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -18,7 +18,7 @@ log() {
   fi
 }
 
-log "🛑 Stopping Stonks services..."
+log "🛑 Stopping MarketMind services..."
 
 # 1. Kill tracked PIDs from .pids file
 if [ -f "$PID_FILE" ]; then

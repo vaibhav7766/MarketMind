@@ -69,7 +69,7 @@ cleanup() {
 trap cleanup SIGINT SIGTERM
 
 echo "=========================================================="
-echo "  🚀 Starting Stonks Ecosystem (Model A Microservice)"
+echo "  🚀 Starting MarketMind Ecosystem (Model A Microservice)"
 echo "=========================================================="
 
 # 1. Start Stock Assistant Backend (FastAPI Brain)

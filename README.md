@@ -1,11 +1,11 @@
-# 📈 Stonks — Unified Market Intelligence & AI Copilot Platform
+# 📈 MarketMind — Unified Market Intelligence & AI Copilot Platform
 
 > [!NOTE]
 > **Modified Fork & Open Source Attribution Notice**  
-> The web platform in this workspace contains a **modified fork** of [**OpenStock**](https://github.com/Open-Dev-Society/OpenStock), originally created by [**Open Dev Society**](https://github.com/Open-Dev-Society) and contributors, licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.  
+> The web platform in this repository contains a **modified fork** of [**OpenStock**](https://github.com/Open-Dev-Society/OpenStock), originally created by [**Open Dev Society**](https://github.com/Open-Dev-Society) and contributors, licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.  
 > In compliance with the AGPL-3.0 copyleft requirements, this repository carries prominent notices documenting all architectural modifications, credits the original authors, and makes all modified source code openly available under the same license terms. Full details can be found in the [Credits & License section](#-open-source-credits-modified-fork-notice--license).
 
-Welcome to the **Stonks** workspace, a hybrid architecture that integrates **OpenStock** (a modern, open-source market tracking dashboard) with **Stock Assistant** ("The Brain" — an autonomous quantitative scoring and AI financial intelligence microservice).
+Welcome to **MarketMind**, a hybrid architecture that integrates **OpenStock** (a modern, open-source market tracking dashboard) with **Stock Assistant** ("The Brain" — an autonomous quantitative scoring and AI financial intelligence microservice).
 
 ---
 
@@ -157,7 +157,7 @@ ALLOWED_ORIGINS=http://localhost:3000
 ## 📂 Project Directory Layout
 
 ```
-Stonks/
+MarketMind/
 ├── start.sh                       # Master startup script (with venv auto-healing)
 ├── kill.sh                        # Port cleanup and process termination script
 ├── README.md                      # Platform documentation (You are here)
