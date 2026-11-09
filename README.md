@@ -1,5 +1,10 @@
 # 📈 Stonks — Unified Market Intelligence & AI Copilot Platform
 
+> [!NOTE]
+> **Modified Fork & Open Source Attribution Notice**  
+> The web platform in this workspace contains a **modified fork** of [**OpenStock**](https://github.com/Open-Dev-Society/OpenStock), originally created by [**Open Dev Society**](https://github.com/Open-Dev-Society) and contributors, licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.  
+> In compliance with the AGPL-3.0 copyleft requirements, this repository carries prominent notices documenting all architectural modifications, credits the original authors, and makes all modified source code openly available under the same license terms. Full details can be found in the [Credits & License section](#-open-source-credits-modified-fork-notice--license).
+
 Welcome to the **Stonks** workspace, a hybrid architecture that integrates **OpenStock** (a modern, open-source market tracking dashboard) with **Stock Assistant** ("The Brain" — an autonomous quantitative scoring and AI financial intelligence microservice).
 
 ---
@@ -195,3 +200,27 @@ Stonks/
 * [ ] **Interactive Copilot Drawer:** Embed a conversational "Ask Copilot" chat drawer on `/stocks/[symbol]` connecting to `/api/chat/{ticker}` with source-cited RAG answers.
 * [ ] **1-Click PDF Equity Research Memos:** Add a "Download Institutional Report" button that triggers the Brain's WeasyPrint generator.
 * [ ] **Smart Thesis Alerts:** Extend Inngest jobs to alert users when a stock's technical or fundamental score crosses predefined conviction thresholds.
+
+---
+
+## 📜 Open Source Credits, Modified Fork Notice & License
+
+### Original Upstream Project
+* **Project:** [OpenStock](https://github.com/Open-Dev-Society/OpenStock)
+* **Author / Organization:** [Open Dev Society](https://github.com/Open-Dev-Society) and [ravixalgorithm](https://github.com/ravixalgorithm)
+* **License:** [GNU Affero General Public License v3.0 (AGPL-3.0)](https://github.com/Open-Dev-Society/OpenStock/blob/main/LICENSE)
+
+We express immense gratitude to the Open Dev Society community for building and maintaining OpenStock openly for everyone.
+
+### Nature of Modifications (AGPL-3.0 Section 5 Notice)
+In accordance with Section 5 of the GNU Affero General Public License v3.0, this repository constitutes a **modified version / derivative work** of OpenStock. The specific architectural and functional modifications made in this fork include:
+1. **Decoupled Microservice Bridge:** Connected OpenStock to the standalone **Stock Assistant ("The Brain")** FastAPI backend via `STOCK_BRAIN_URL`.
+2. **Global Exchange Fallback:** Enhanced `lib/actions/finnhub.actions.ts` to seamlessly route international and Indian exchange tickers (`.NS`, `.BO`) to the Brain's `yfinance` engine, resolving Finnhub's free-tier `403 Forbidden` wall and computing accurate dividend yields.
+3. **Unified Technicals & AI Speedometer Card:** Replaced the separate, duplicate 800px+ stacked panels with a custom [`StockTechnicalsPanel.tsx`](file:///home/vaibhav7766/Desktop/Stonks/OpenStock/components/stocks/StockTechnicalsPanel.tsx) featuring a native 5-zone SVG speedometer gauge, 0–100 conviction score, three quantitative pillars (Tech, Fund, News), concise AI analyst narrative, collapsible catalysts/risks, and a 1-click TradingView toggle.
+4. **Resilient Dual-LLM Pipeline:** Integrated an automatic **Mistral AI fallback** into the backend analysis engine to prevent downtime during Google Gemini 503 service outages.
+5. **Smart Social Sentiment Auto-Hiding:** Added an activity gate to [`page.tsx`](file:///home/vaibhav7766/Desktop/Stonks/OpenStock/app/(root)/stocks/[symbol]/page.tsx) that automatically conceals 0-activity third-party Adanos cards on international equities, keeping the sidebar layout clean and clutter-free.
+6. **Multi-Service Lifecycle Scripts:** Created [`start.sh`](file:///home/vaibhav7766/Desktop/Stonks/start.sh) (with virtualenv path auto-healing) and [`kill.sh`](file:///home/vaibhav7766/Desktop/Stonks/kill.sh) in the workspace root for unified process management.
+
+### License Terms
+This modified fork is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. If you modify, redistribute, or host this software as a networked service, you must make your modified source code available under the same AGPL-3.0 terms and preserve original author attributions.
+
