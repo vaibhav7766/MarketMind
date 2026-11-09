@@ -1,0 +1,49 @@
+# Next.js build and Turbopack cache (fixes 75MB+ warning)
+.next/
+*/.next/
+out/
+build/
+dist/
+
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Python virtual environments & caches
+.venv/
+*/.venv/
+venv/
+*/venv/
+__pycache__/
+*/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Local databases & Vector stores
+chroma_db/
+*/chroma_db/
+*.db
+*.sqlite3
+
+# Environment files & Secrets
+.env
+.env*.local
+*.env
+!.env.example
+!.env*.example
+
+# Process logs & PIDs
+.logs/
+*.log
+.pids
+.pids*
+
+# System & IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
