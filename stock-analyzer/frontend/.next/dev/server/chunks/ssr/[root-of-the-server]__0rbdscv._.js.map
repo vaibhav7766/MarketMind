@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///home/vaibhav7766/stock-analyzer/frontend/src/app/providers.tsx"],"sourcesContent":["\"use client\";\n\nimport { QueryClient, QueryClientProvider } from \"@tanstack/react-query\";\nimport { useState } from \"react\";\n\nexport default function Providers({ children }: { children: React.ReactNode }) {\n  const [queryClient] = useState(() => new QueryClient({\n    defaultOptions: {\n      queries: {\n        staleTime: 60 * 1000,\n        refetchOnWindowFocus: false,\n      },\n    },\n  }));\n\n  return (\n    <QueryClientProvider client={queryClient}>\n      {children}\n    </QueryClientProvider>\n  );\n}\n"],"names":["Providers","children","queryClient","defaultOptions","queries","staleTime","refetchOnWindowFocus","client"],"mappings":";;;;;AAEA;AAAA;AACA;AAHA;;;;AAKe,SAASA,UAAU,EAAEC,QAAQ,EAAiC;IAC3E,MAAM,CAACC,YAAY,GAAG,IAAA,iNAAQ,EAAC,IAAM,IAAI,4LAAW,CAAC;YACnDC,gBAAgB;gBACdC,SAAS;oBACPC,WAAW,KAAK;oBAChBC,sBAAsB;gBACxB;YACF;QACF;IAEA,qBACE,8OAAC,6MAAmB;QAACC,QAAQL;kBAC1BD;;;;;;AAGP"}}]
+}

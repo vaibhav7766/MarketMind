@@ -1,0 +1,45 @@
+[
+  {
+    "route": "/stocks/[ticker]",
+    "firstLoadUncompressedJsBytes": 1041860,
+    "firstLoadChunkPaths": [
+      ".next/static/chunks/0gg-woh9.v2wb.js",
+      ".next/static/chunks/1860zsbcg5z1o.js",
+      ".next/static/chunks/0fm6is8vwg8yz.js",
+      ".next/static/chunks/0fd~vs_3za-di.js",
+      ".next/static/chunks/022xxmtlp~gr4.js",
+      ".next/static/chunks/0bzupvr5gt3k9.js",
+      ".next/static/chunks/02i7dfk78~t~2.js",
+      ".next/static/chunks/0othr0dbo02_e.js",
+      ".next/static/chunks/07lhk_q6pmm3r.js",
+      ".next/static/chunks/turbopack-0fd-lxh4aowc1.js"
+    ]
+  },
+  {
+    "route": "/",
+    "firstLoadUncompressedJsBytes": 545825,
+    "firstLoadChunkPaths": [
+      ".next/static/chunks/0gg-woh9.v2wb.js",
+      ".next/static/chunks/1860zsbcg5z1o.js",
+      ".next/static/chunks/0y43c3jgtxg-j.js",
+      ".next/static/chunks/0bzupvr5gt3k9.js",
+      ".next/static/chunks/02i7dfk78~t~2.js",
+      ".next/static/chunks/0othr0dbo02_e.js",
+      ".next/static/chunks/07lhk_q6pmm3r.js",
+      ".next/static/chunks/turbopack-0fd-lxh4aowc1.js"
+    ]
+  },
+  {
+    "route": "/_not-found",
+    "firstLoadUncompressedJsBytes": 541712,
+    "firstLoadChunkPaths": [
+      ".next/static/chunks/0gg-woh9.v2wb.js",
+      ".next/static/chunks/1860zsbcg5z1o.js",
+      ".next/static/chunks/0bzupvr5gt3k9.js",
+      ".next/static/chunks/02i7dfk78~t~2.js",
+      ".next/static/chunks/0othr0dbo02_e.js",
+      ".next/static/chunks/07lhk_q6pmm3r.js",
+      ".next/static/chunks/turbopack-0fd-lxh4aowc1.js"
+    ]
+  }
+]

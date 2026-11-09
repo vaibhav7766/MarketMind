@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.sqlite3
+*.egg-info/
+*.dist-info/
+*.egg
+.env
+.venv
+venv/
+
+# FastAPI / uv
+/.uv
+backend/uv.lock
+
+# Node / frontend
+node_modules/
+/.next/
+/.cache/
+.dist/
+build/
+package-lock.json
+
+# Environment files
+.env
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Misc
+coverage/
+*.coverage
+htmlcov/

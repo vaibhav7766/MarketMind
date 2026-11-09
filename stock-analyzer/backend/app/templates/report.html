@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ info.ticker }} - Stock Report</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        @page {
+            size: A4;
+            margin: 20mm;
+            @bottom-right {
+                content: "Page " counter(page) " of " counter(pages);
+                font-family: 'Inter', sans-serif;
+                font-size: 10px;
+                color: #64748b;
+            }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+            line-height: 1.6;
+            font-size: 11pt;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            color: #0f172a;
+            margin-top: 0;
+        }
+        
+        h1 {
+            font-size: 28pt;
+            font-weight: 800;
+            margin-bottom: 5px;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 18pt;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            font-size: 14pt;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #334155;
+        }
+
+        .text-slate-500 { color: #64748b; }
+        .text-slate-600 { color: #475569; }
+        .font-semibold { font-weight: 600; }
+        .text-sm { font-size: 10pt; }
+
+        /* Header */
+        .header {
+            border-bottom: 4px solid #3b82f6;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .ticker-badge {
+            display: inline-block;
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 12pt;
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+        }
+
+        .company-name {
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 14pt;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* Grid / Stats */
+        .stats-grid {
+            display: table;
+            width: 100%;
+            margin-bottom: 30px;
+            border-spacing: 15px;
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+
+        .stat-card {
+            display: table-cell;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px;
+            width: 33%;
+        }
+
+        .stat-label {
+            font-size: 9pt;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #64748b;
+            margin-bottom: 5px;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-value {
+            font-size: 16pt;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        /* AI Analysis Section */
+        .analysis-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .analysis-title {
+            color: #1e3a8a;
+            font-weight: 700;
+            font-size: 14pt;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .sentiment-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 10pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: white;
+            margin-left: 10px;
+        }
+        .sentiment-positive { background-color: #10b981; }
+        .sentiment-neutral { background-color: #64748b; }
+        .sentiment-negative { background-color: #ef4444; }
+
+        .markdown-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        .markdown-content li {
+            margin-bottom: 8px;
+        }
+
+        /* Articles */
+        .article {
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            page-break-inside: avoid;
+        }
+
+        .article h3 {
+            font-size: 12pt;
+            margin-bottom: 8px;
+            color: #1e293b;
+        }
+        
+        .article .meta {
+            font-size: 9pt;
+            color: #64748b;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .article p {
+            font-size: 10pt;
+            margin-bottom: 0;
+            color: #475569;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: #f1f5f9;
+            border-radius: 4px;
+            font-size: 8pt;
+            font-weight: 600;
+            color: #475569;
+        }
+        
+        .impact-positive { background: #dcfce7; color: #166534; }
+        .impact-negative { background: #fee2e2; color: #991b1b; }
+        .impact-neutral { background: #f1f5f9; color: #475569; }
+
+        .score-good { color: #16a34a; }
+        .score-bad { color: #dc2626; }
+        .score-neutral { color: #475569; }
+        
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 9pt;
+            color: #94a3b8;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="ticker-badge">{{ info.ticker }}</div>
+        <div class="company-name">{{ info.name }}</div>
+        <h1>Stock Intelligence Report</h1>
+        <div class="text-slate-500 font-semibold">Generated on {{ generated_date }}</div>
+    </div>
+
+    <!-- Company Stats -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">Sector</div>
+            <div class="stat-value">{{ info.sector or "N/A" }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Market Cap</div>
+            <div class="stat-value">{{ format_currency(info.market_cap) if info.market_cap else "N/A" }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">P/E Ratio</div>
+            <div class="stat-value">{{ "%.2f"|format(info.pe_ratio) if info.pe_ratio else "N/A" }}</div>
+        </div>
+    </div>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">52 Week High</div>
+            <div class="stat-value">{{ format_currency(info.fifty_two_week_high) if info.fifty_two_week_high else "N/A" }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">52 Week Low</div>
+            <div class="stat-value">{{ format_currency(info.fifty_two_week_low) if info.fifty_two_week_low else "N/A" }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Total Articles Analyzed</div>
+            <div class="stat-value">{{ articles|length }}</div>
+        </div>
+    </div>
+
+    <!-- AI Analysis KPIs -->
+    {% if analysis %}
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">Fundamental Score</div>
+            <div class="stat-value {% if analysis.fundamental_score >= 70 %}score-good{% elif analysis.fundamental_score <= 39 %}score-bad{% else %}score-neutral{% endif %}">
+                {{ "%.0f"|format(analysis.fundamental_score) }}/100
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Technical Score</div>
+            <div class="stat-value {% if analysis.technical_score >= 70 %}score-good{% elif analysis.technical_score <= 39 %}score-bad{% else %}score-neutral{% endif %}">
+                {{ "%.0f"|format(analysis.technical_score) }}/100
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">News & Events Score</div>
+            <div class="stat-value {% if analysis.news_score >= 70 %}score-good{% elif analysis.news_score <= 39 %}score-bad{% else %}score-neutral{% endif %}">
+                {{ "%.0f"|format(analysis.news_score) }}/100
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- AI Analysis -->
+    {% if analysis %}
+    <h2>AI News Analysis</h2>
+    <div class="analysis-box">
+        <div class="analysis-title">
+            Explainable AI Verdict: 
+            {% set sentiment = analysis.classification.lower() %}
+            <span class="sentiment-badge 
+                {% if 'bull' in sentiment or 'pos' in sentiment %}sentiment-positive
+                {% elif 'bear' in sentiment or 'neg' in sentiment %}sentiment-negative
+                {% else %}sentiment-neutral{% endif %}">
+                {{ analysis.classification }}
+            </span>
+            <span style="font-size: 11pt; font-weight: normal; margin-left: 10px; color: #64748b;">(Score: {{ "%.0f"|format(analysis.overall_score) }}/100)</span>
+        </div>
+        
+        <div class="markdown-content">
+
+            <h3>Key Catalysts</h3>
+            <ul>
+                {% for catalyst in analysis.catalysts %}
+                <li>{{ catalyst }}</li>
+                {% endfor %}
+            </ul>
+
+            <h3>Risk Factors</h3>
+            <ul>
+                {% for risk in analysis.risks %}
+                <li>{{ risk }}</li>
+                {% endfor %}
+            </ul>
+
+            <h3>Analyst Summary</h3>
+            <p>{{ analysis.summary }}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Extracted Events -->
+    {% if analysis and analysis.events %}
+    <h2>Extracted Events</h2>
+    {% for event in analysis.events %}
+    <div class="article">
+        <h3>
+            <span class="badge">{{ event.event }}</span> 
+            <span class="badge {% if event.impact > 0 %}impact-positive{% elif event.impact < 0 %}impact-negative{% else %}impact-neutral{% endif %}">Impact: {{ "%+d"|format(event.impact) }}</span>
+            {{ event.title }}
+        </h3>
+        <p>{{ event.reason }}</p>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <!-- Recent News -->
+    <h2>Recent News</h2>
+    {% for article in articles[:10] %}
+    <div class="article">
+        <h3>
+            <a href="{{ article.url }}" target="_blank" style="color: inherit; text-decoration: none;">
+                {{ article.title }}
+            </a>
+        </h3>
+        <div class="meta">{{ article.source }} &bull; {{ article.published_at[:10] if article.published_at else '' }}</div>
+        <p>{{ article.description[:200] ~ '...' if article.description and article.description|length > 200 else article.description }}</p>
+    </div>
+    {% endfor %}
+
+    <div class="footer">
+        Report generated by Stock Analyzer AI. Market data provided by Yahoo Finance. News provided by NewsData.io.
+    </div>
+
+</body>
+</html>
